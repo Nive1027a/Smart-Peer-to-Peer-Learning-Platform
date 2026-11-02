@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Peerly - Peer Learning Platform
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- ================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ================================================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <span class="brand-icon">
+                ∞
+            </span>
+
+            Peerly
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div
+                class="avatar"
+                id="avatar"
+            >
+                M
+            </div>
+
+            <div>
+
+                <b id="sideName">
+                    Student
+                </b>
+
+                <small id="sideInfo">
+                    CSE · Year 2
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-btn active"
+                data-page="home"
+            >
+                ⌂
+                <span>
+                    Home
+                </span>
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-page="discover"
+            >
+                ◉
+                <span>
+                    Discover
+                </span>
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-page="learning"
+            >
+                ▣
+                <span>
+                    My learning
+                </span>
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-page="messages"
+            >
+                ◌
+                <span>
+                    Messages
+                </span>
+            </button>
+
+
+            <button
+                class="nav-btn"
+                data-page="rooms"
+            >
+                ♧
+                <span>
+                    Study rooms
+                </span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="promise">
+
+                <b>
+                    ◉ Peerly Promise
+                </b>
+
+                <p>
+                    Verified students,
+                    community ratings,
+                    and clear session goals.
+                </p>
+
+            </div>
+
+
+            <button
+                class="logout"
+                onclick="logout()"
+            >
+                ↪ Log out
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================= -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 id="greeting">
+                    Good morning
+                </h1>
+
+                <p>
+                    You have learning opportunities today.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <input
+                    id="searchBox"
+                    type="text"
+                    placeholder="⌕ Search skills or people"
+                >
+
+                <button class="icon-btn">
+                    ♧
+                </button>
+
+                <span class="open-status">
+                    ● Open to match⌄
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================================================= -->
+        <!-- HOME -->
+        <!-- ================================================= -->
+
+        <section
+            id="homePage"
+            class="page"
+        >
+
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+
+                <div class="hero-copy">
+
+                    <span class="live">
+                        ● LIVE EXCHANGE
+                    </span>
+
+                    <h2>
+                        What will you
+                        <br>
+                        exchange today?
+                    </h2>
+
+                    <p>
+                        Offer what you know,
+                        ask for what you need.
+                        Peerly finds the overlap.
+                    </p>
+
+                    <b id="credits">
+                        ↗ 4 credits available this week
+                    </b>
+
+                </div>
+
+
+                <!-- TEACH -->
+
+                <div class="action-card teach">
+
+                    <small>
+                        ✣ I CAN TEACH
+                    </small>
+
+                    <h3>
+                        Share a skill
+                    </h3>
+
+                    <p>
+                        Tell peers what you can teach.
+                    </p>
+
+                    <button
+                        onclick="openModal('offerModal')"
+                    >
+                        Create an offer →
+                    </button>
+
+                </div>
+
+
+                <!-- LEARN -->
+
+                <div class="action-card learn">
+
+                    <small>
+                        ⌕ I WANT TO LEARN
+                    </small>
+
+                    <h3>
+                        Request knowledge
+                    </h3>
+
+                    <p>
+                        Tell peers your goal and availability.
+                    </p>
+
+                    <button
+                        onclick="openModal('requestModal')"
+                    >
+                        Post a request →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- MATCHES -->
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        SMART MATCHING
+                    </span>
+
+                    <h2>
+                        Peers worth meeting
+                    </h2>
+
+                </div>
+
+
+                <button onclick="loadMatches()">
+                    Refresh matches →
+                </button>
+
+            </div>
+
+
+            <div
+                id="matchGrid"
+                class="match-grid"
+            >
+            </div>
+
+
+            <!-- SESSIONS -->
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        YOUR ACTIVITY
+                    </span>
+
+                    <h2>
+                        Active learning sessions
+                    </h2>
+
+                </div>
+
+
+                <button
+                    onclick="showPage('learning')"
+                >
+                    My learning →
+                </button>
+
+            </div>
+
+
+            <div
+                id="sessionList"
+                class="session-list"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- DISCOVER -->
+        <!-- ================================================= -->
+
+        <section
+            id="discoverPage"
+            class="page hidden"
+        >
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        DISCOVER
+                    </span>
+
+                    <h2>
+                        Skills & opportunities
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="tabs">
+
+                <button
+                    class="tab active"
+                    onclick="loadOffers()"
+                >
+                    People teaching
+                </button>
+
+
+                <button
+                    class="tab"
+                    onclick="loadRequests()"
+                >
+                    People learning
+                </button>
+
+            </div>
+
+
+            <div
+                id="discoverList"
+                class="discover-list"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- MY LEARNING -->
+        <!-- ================================================= -->
+
+        <section
+            id="learningPage"
+            class="page hidden"
+        >
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        MY LEARNING
+                    </span>
+
+                    <h2>
+                        Sessions and matches
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div id="learningContent">
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- MESSAGES -->
+        <!-- ================================================= -->
+
+        <section
+            id="messagesPage"
+            class="page hidden"
+        >
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        MESSAGES
+                    </span>
+
+                    <h2>
+                        Connect with peers
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="message-box">
+
+                <p>
+                    Select a matched peer from
+                    the Home page to start a conversation.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- STUDY ROOMS -->
+        <!-- ================================================= -->
+
+        <section
+            id="roomsPage"
+            class="page hidden"
+        >
+
+            <div class="section-title">
+
+                <div>
+
+                    <span>
+                        COLLABORATE
+                    </span>
+
+                    <h2>
+                        Study rooms
+                    </h2>
+
+                </div>
+
+
+                <button
+                    class="primary"
+                    onclick="openModal('roomModal')"
+                >
+                    + Create room
+                </button>
+
+            </div>
+
+
+            <div
+                id="roomList"
+                class="room-list"
+            >
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- LOGIN -->
+<!-- ================================================= -->
+
+<div
+    id="loginScreen"
+    class="auth-screen"
+>
+
+    <div class="auth-card">
+
+        <div class="brand large">
+
+            <span class="brand-icon">
+                ∞
+            </span>
+
+            Peerly
+
+        </div>
+
+
+        <h1>
+            Learn together.
+        </h1>
+
+
+        <p>
+            Exchange knowledge with students
+            who can teach what you want to learn.
+        </p>
+
+
+        <input
+            id="loginEmail"
+            placeholder="College email"
+        >
+
+
+        <input
+            id="loginPassword"
+            type="password"
+            placeholder="Password"
+        >
+
+
+        <button
+            class="primary full"
+            onclick="login()"
+        >
+            Sign in
+        </button>
+
+
+        <p class="switch-auth">
+
+            New here?
+
+            <a onclick="showRegister()">
+                Create an account
+            </a>
+
+        </p>
+
+
+        <div
+            id="loginError"
+            class="error"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- REGISTER -->
+<!-- ================================================= -->
+
+<div
+    id="registerScreen"
+    class="auth-screen hidden"
+>
+
+    <div class="auth-card">
+
+        <div class="brand large">
+
+            <span class="brand-icon">
+                ∞
+            </span>
+
+            Peerly
+
+        </div>
+
+
+        <h1>
+            Create your profile.
+        </h1>
+
+
+        <input
+            id="regName"
+            placeholder="Full name"
+        >
+
+
+        <input
+            id="regEmail"
+            placeholder="College email"
+        >
+
+
+        <input
+            id="regPassword"
+            type="password"
+            placeholder="Password"
+        >
+
+
+        <div class="two-inputs">
+
+            <input
+                id="regDept"
+                placeholder="Department"
+                value="CSE"
+            >
+
+
+            <input
+                id="regYear"
+                type="number"
+                min="1"
+                max="5"
+                value="2"
+            >
+
+        </div>
+
+
+        <button
+            class="primary full"
+            onclick="register()"
+        >
+            Create account
+        </button>
+
+
+        <p class="switch-auth">
+
+            Already registered?
+
+            <a onclick="showLogin()">
+                Sign in
+            </a>
+
+        </p>
+
+
+        <div
+            id="registerError"
+            class="error"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- OFFER MODAL -->
+<!-- ================================================= -->
+
+<div
+    id="offerModal"
+    class="modal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="close"
+            onclick="closeModal('offerModal')"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Share a skill
+        </h2>
+
+
+        <p>
+            Tell other students what you can teach.
+        </p>
+
+
+        <select id="offerSkill">
+        </select>
+
+
+        <textarea
+            id="offerDescription"
+            placeholder="What can you help someone learn?"
+        ></textarea>
+
+
+        <div class="two-inputs">
+
+            <select id="offerLevel">
+
+                <option>
+                    Beginner
+                </option>
+
+                <option>
+                    Intermediate
+                </option>
+
+                <option>
+                    Advanced
+                </option>
+
+            </select>
+
+
+            <select id="offerAvailability">
+
+                <option>
+                    Flexible
+                </option>
+
+                <option>
+                    Weekday evenings
+                </option>
+
+                <option>
+                    Weekend
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="primary full"
+            onclick="createOffer()"
+        >
+            Publish offer
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- REQUEST MODAL -->
+<!-- ================================================= -->
+
+<div
+    id="requestModal"
+    class="modal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="close"
+            onclick="closeModal('requestModal')"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Request knowledge
+        </h2>
+
+
+        <p>
+            Tell the community what you want to learn.
+        </p>
+
+
+        <select id="requestSkill">
+        </select>
+
+
+        <textarea
+            id="requestDescription"
+            placeholder="What is your learning goal?"
+        ></textarea>
+
+
+        <div class="two-inputs">
+
+            <select id="requestLevel">
+
+                <option>
+                    Beginner
+                </option>
+
+                <option>
+                    Intermediate
+                </option>
+
+                <option>
+                    Advanced
+                </option>
+
+            </select>
+
+
+            <select id="requestAvailability">
+
+                <option>
+                    Flexible
+                </option>
+
+                <option>
+                    Weekday evenings
+                </option>
+
+                <option>
+                    Weekend
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="primary full"
+            onclick="createRequest()"
+        >
+            Post request
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- STUDY ROOM MODAL -->
+<!-- ================================================= -->
+
+<div
+    id="roomModal"
+    class="modal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="close"
+            onclick="closeModal('roomModal')"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Create a study room
+        </h2>
+
+
+        <input
+            id="roomTitle"
+            placeholder="Room title"
+        >
+
+
+        <input
+            id="roomTopic"
+            placeholder="Topic"
+        >
+
+
+        <input
+            id="roomDate"
+            type="datetime-local"
+        >
+
+
+        <div class="two-inputs">
+
+            <input
+                id="roomDuration"
+                type="number"
+                value="45"
+                min="15"
+            >
+
+
+            <input
+                id="roomMax"
+                type="number"
+                value="8"
+                min="2"
+                max="50"
+            >
+
+        </div>
+
+
+        <button
+            class="primary full"
+            onclick="createRoom()"
+        >
+            Create room
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="/static/app.js"></script>
+
+</body>
+
+</html>

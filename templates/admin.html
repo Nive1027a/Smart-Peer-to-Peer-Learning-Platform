@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Peerly Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/admin.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="admin-container">
+
+
+        <!-- HEADER -->
+
+        <header class="admin-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    PEERLY
+                </p>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p class="subtitle">
+                    Monitor the Peer-to-Peer Learning Platform
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    class="refresh-btn"
+                    onclick="loadAdminData()"
+                >
+                    ↻ Refresh
+                </button>
+
+                <a
+                    href="/"
+                    class="home-btn"
+                >
+                    ← Peerly
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>
+                        Users
+                    </span>
+
+                    <strong id="usersCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <span>
+                        Skills
+                    </span>
+
+                    <strong id="skillsCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <span>
+                        Offers
+                    </span>
+
+                    <strong id="offersCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔎
+                </div>
+
+                <div>
+
+                    <span>
+                        Requests
+                    </span>
+
+                    <strong id="requestsCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🤝
+                </div>
+
+                <div>
+
+                    <span>
+                        Matches
+                    </span>
+
+                    <strong id="matchesCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <span>
+                        Sessions
+                    </span>
+
+                    <strong id="sessionsCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💬
+                </div>
+
+                <div>
+
+                    <span>
+                        Messages
+                    </span>
+
+                    <strong id="messagesCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏠
+                </div>
+
+                <div>
+
+                    <span>
+                        Study Rooms
+                    </span>
+
+                    <strong id="roomsCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DATABASE TABLES -->
+
+        <main>
+
+
+            <!-- USERS -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Users
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="usersRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Year</th>
+                                <th>Created</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="usersTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- SKILLS -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Skills
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="skillsRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Skill</th>
+                                <th>Category</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="skillsTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- OFFERS -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Teaching Offers
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="offersRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Student</th>
+                                <th>Skill</th>
+                                <th>Category</th>
+                                <th>Level</th>
+                                <th>Availability</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="offersTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- REQUESTS -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Learning Requests
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="requestsRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Student</th>
+                                <th>Skill</th>
+                                <th>Category</th>
+                                <th>Level</th>
+                                <th>Availability</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="requestsTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- MATCHES -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Peer Matches
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="matchesRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Requester</th>
+                                <th>Teacher</th>
+                                <th>Skill</th>
+                                <th>Score</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="matchesTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- SESSIONS -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Learning Sessions
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="sessionsRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Teacher</th>
+                                <th>Learner</th>
+                                <th>Scheduled</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="sessionsTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- MESSAGES -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Messages
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="messagesRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Sender</th>
+                                <th>Receiver</th>
+                                <th>Message</th>
+                                <th>Read</th>
+                                <th>Created</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="messagesTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- ROOMS -->
+
+            <section class="data-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            DATABASE
+                        </span>
+
+                        <h2>
+                            Study Rooms
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="record-count"
+                        id="roomsRecords"
+                    >
+                        0 records
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Topic</th>
+                                <th>Host</th>
+                                <th>Members</th>
+                                <th>Scheduled</th>
+                                <th>Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="roomsTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="/static/admin.js"></script>
+
+</body>
+
+</html>

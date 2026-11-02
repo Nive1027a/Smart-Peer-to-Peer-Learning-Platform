@@ -1,0 +1,473 @@
+/* ============================================================
+   PEERLY ADMIN DASHBOARD
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        "Times New Roman",
+        serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8f5ff,
+            #f5f8ff
+        );
+
+    color: #242033;
+}
+
+
+.admin-container {
+    width: min(
+        1500px,
+        94%
+    );
+
+    margin: auto;
+
+    padding:
+        40px 0 80px;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.admin-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin-bottom: 35px;
+}
+
+
+.eyebrow {
+    margin: 0 0 6px;
+
+    color: #7654d8;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+
+.admin-header h1 {
+    margin: 0;
+
+    font-size: 42px;
+}
+
+
+.subtitle {
+    margin-top: 8px;
+
+    color: #777;
+}
+
+
+.header-actions {
+    display: flex;
+
+    gap: 12px;
+}
+
+
+.header-actions a,
+.header-actions button {
+    border: none;
+
+    text-decoration: none;
+
+    padding:
+        12px 18px;
+
+    border-radius: 12px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.refresh-btn {
+    background: #7654d8;
+
+    color: white;
+}
+
+
+.home-btn {
+    background: white;
+
+    color: #7654d8;
+
+    border: 1px solid #e0d9f5 !important;
+}
+
+
+/* ============================================================
+   STATS
+   ============================================================ */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap: 18px;
+
+    margin-bottom: 35px;
+}
+
+
+.stat-card {
+    background: white;
+
+    border:
+        1px solid #ebe7f4;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            80,
+            50,
+            120,
+            0.06
+        );
+}
+
+
+.stat-icon {
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 14px;
+
+    background:
+        #f0ebff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 22px;
+}
+
+
+.stat-card span {
+    display: block;
+
+    color: #888;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+
+.stat-card strong {
+    display: block;
+
+    font-size: 27px;
+}
+
+
+/* ============================================================
+   DATA SECTION
+   ============================================================ */
+
+.data-section {
+    background: white;
+
+    border:
+        1px solid #ebe7f4;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 8px 30px
+        rgba(
+            80,
+            50,
+            120,
+            0.05
+        );
+}
+
+
+.section-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+
+.section-label {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #7654d8;
+
+    font-weight: bold;
+}
+
+
+.section-header h2 {
+    margin:
+        5px 0 0;
+
+    font-size: 25px;
+}
+
+
+.record-count {
+    background: #f3efff;
+
+    color: #7654d8;
+
+    padding:
+        7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 700px;
+}
+
+
+thead {
+    background: #f8f6fc;
+}
+
+
+th {
+    text-align: left;
+
+    padding:
+        13px 15px;
+
+    color: #666;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+
+td {
+    padding:
+        14px 15px;
+
+    border-top:
+        1px solid #eee;
+
+    font-size: 14px;
+
+    color: #4d4a55;
+
+    vertical-align: middle;
+}
+
+
+tbody tr:hover {
+    background: #faf9ff;
+}
+
+
+td strong {
+    color: #292532;
+}
+
+
+.message-cell {
+    max-width: 350px;
+
+    white-space: normal;
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   TAGS
+   ============================================================ */
+
+.tag,
+.status,
+.score {
+    display: inline-block;
+
+    padding:
+        5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    background: #f1edff;
+
+    color: #6848c7;
+}
+
+
+.status {
+    background: #edf8f0;
+
+    color: #33864b;
+}
+
+
+.score {
+    background: #fff4df;
+
+    color: #a56b00;
+}
+
+
+/* ============================================================
+   EMPTY
+   ============================================================ */
+
+.empty-row {
+    text-align: center;
+
+    padding:
+        30px !important;
+
+    color: #999;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (
+    max-width: 1000px
+) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+}
+
+
+@media (
+    max-width: 700px
+) {
+
+    .admin-container {
+        width: 92%;
+
+        padding-top: 25px;
+    }
+
+
+    .admin-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .admin-header h1 {
+        font-size: 32px;
+    }
+
+
+    .header-actions {
+        width: 100%;
+    }
+
+
+    .header-actions a,
+    .header-actions button {
+        flex: 1;
+
+        text-align: center;
+    }
+
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .data-section {
+        padding: 18px;
+    }
+
+}
